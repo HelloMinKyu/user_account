@@ -1,0 +1,864 @@
+
+.schedule-status-page {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.calendar-weekdays, .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.calendar-weekdays div {
+    font-weight: bold;
+    padding: 8px 0;
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+}
+
+.calendar-grid {
+    gap: 4px;
+}
+
+.day-cell {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 6px;
+    min-height: 70px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.day-cell:hover { background: #f2f2f2; }
+.day-cell.today { border: 2px solid #4a90e2; background: #e8f3ff; }
+.summary { font-size: 12px; color: #555; margin-top: 4px; }
+
+.schedule-detail { margin-top: 30px; }
+.schedule-item {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 8px;
+}
+.edit-btn {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.edit-btn:hover { background: #357bd8; }
+
+@media (max-width: 480px) {
+    .calendar-grid, .calendar-weekdays { font-size: 13px; }
+    .day-cell { min-height: 60px; }
+}
+
+/* ✅ header 아래에 가려지지 않도록 전체 margin 추가 */
+.schedule-status-page {
+    max-width: 800px;
+    margin: 120px auto 0 auto; /* 상단 header 높이에 맞춰 조정 */
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* ✅ 상세 리스트 스타일 개선 */
+.schedule-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 12px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.schedule-row {
+    border-bottom: 1px dashed #ddd;
+    padding: 6px 0;
+}
+.schedule-row:last-child { border-bottom: none; }
+
+.schedule-row p {
+    margin: 2px 0;
+    font-size: 14px;
+}
+.schedule-row .label {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.type-fund .label { color: #2b8a3e; }
+.type-nonfund .label { color: #c92a2a; }
+
+.edit-btn {
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 13px;
+}
+.edit-btn:hover { background: #357bd8; }
+
+/* ✅ 반응형 */
+@media (max-width: 480px) {
+    .schedule-row p { font-size: 13px; }
+    .schedule-item { padding: 8px 10px; }
+}
+.schedule-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 10px;
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.schedule-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* 긴 줄 줄바꿈 */
+    padding: 4px 0;
+    border-bottom: 1px dashed #ddd;
+}
+.schedule-row:last-child { border-bottom: none; }
+
+.type-fund { color: #2b8a3e; }
+.type-nonfund { color: #c92a2a; }
+
+.edit-btn {
+    margin-left: 10px;
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.edit-btn:hover { background: #357bd8; }
+
+@media (max-width: 480px) {
+    .schedule-item { font-size: 13px; }
+}
+/* ✅ 일정 테이블 */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.schedule-table th, .schedule-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+.schedule-table thead th {
+    background-color: #4a90e2;
+    color: white;
+    font-weight: 600;
+}
+
+.schedule-table tbody tr:nth-child(even) {
+    background-color: #f4f8fc;
+}
+
+/* ✅ 행별 색상 구분 */
+.fund-row td:first-child {
+    color: #2b8a3e;
+    font-weight: 700;
+}
+.nonfund-row td:first-child {
+    color: #c92a2a;
+    font-weight: 700;
+}
+
+/* ✅ 수정 버튼 */
+.edit-btn {
+    background-color: #ff99ff;
+    color: #000;
+    border: 1px solid #cc66cc;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.edit-btn:hover {
+    background-color: #ff77ff;
+}
+
+/* ✅ 반응형 */
+@media (max-width: 480px) {
+    .schedule-table th, .schedule-table td {
+        font-size: 13px;
+        padding: 6px;
+    }
+}
+/* ✅ 달력 셀 */
+.day-cell {
+    border: 1px solid #ddd;
+    height: 90px;
+    padding: 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.day-cell:hover { background: #f5f9ff; }
+
+.day-num {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+/* ✅ 요약정보 (공금/비공금 세로로 표시) */
+.summary {
+    font-size: 12px;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 2px;
+}
+.summary div:first-child { color: #2b8a3e; font-weight: 600; } /* 공금 */
+.summary div:last-child { color: #c92a2a; font-weight: 600; } /* 비공금 */
+
+/* ✅ 오늘 날짜 표시 */
+.day-cell.today {
+    border: 2px solid #4a90e2;
+    background-color: #e8f1ff;
+}
+
+/*fund*/
+.fund-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.fund-table th {
+    background-color: #5ba4e5;
+    color: #fff;
+    padding: 6px;
+    text-align: center;
+}
+.fund-table td {
+    background-color: #eef4fb;
+    text-align: center;
+    padding: 8px;
+}
+.fund-save-btn {
+    background-color: pink;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 오늘 날짜 강조 */
+.today-cell {
+    border: 2px solid #ff6666;
+    background-color: #fff5f5;
+}
+
+/* 클릭된 날짜 hover 효과 */
+.day-cell:hover {
+    background-color: #f2f6fc;
+    cursor: pointer;
+}
+/* 클릭한 날짜 강조 */
+.selected-date {
+    border: 2px solid #4a90e2;
+    background-color: #e8f1ff;
+}
+
+/* 공금정보 테이블 공통 */
+.fund-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.fund-table th,
+.fund-table td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 6px 4px;  /* 🔹패딩을 줄여서 공간 확보 */
+    font-size: 14px;
+}
+
+/* 🔹출금 / 입금 칸 크기 조정 */
+.fund-table th:nth-child(2),
+.fund-table td:nth-child(2),
+.fund-table th:nth-child(3),
+.fund-table td:nth-child(3) {
+    width: 80px;  /* 기존보다 좁게 */
+}
+
+/* 🔹일자 칸은 늘리기 */
+.fund-table th:nth-child(1),
+.fund-table td:nth-child(1) {
+    width: 140px;
+}
+
+/* 🔹모바일일 땐 자동 줄바꿈 허용 */
+@media (max-width: 768px) {
+    .fund-table th,
+    .fund-table td {
+        font-size: 12px;
+        padding: 4px 2px;
+    }
+
+    .fund-table {
+        table-layout: auto;
+        word-break: keep-all;
+    }
+}
+#calendarGrid {
+    margin-bottom: 40px; /* 🔹공금정보 영역과 겹치지 않게 */
+}
+
+/* 공금정보 전체 영역 */
+#fundDetail {
+    display: none;
+    margin-top: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 800px; /* 🔹달력 크기 맞추기 */
+    margin-left: auto;
+    margin-right: auto;
+}
+.fund-info {
+    font-family: monospace;
+    text-align: left;
+    line-height: 1.4;
+}
+.fund-info {
+    text-align: left;       /* 왼쪽 정렬 */
+    line-height: 1.4;       /* 줄 간격 적당히 */
+    padding-left: 2px;      /* 약간의 여백 */
+}
+
+.fund-info div {
+    display: block;
+    white-space: nowrap;
+}
+
+.summary {
+    text-align: left;       /* 왼쪽 정렬 */
+    line-height: 1.4;       /* 줄 간격 */
+    font-size: 13px;        /* 필요시 글자 크기 조정 */
+    padding-left: 2px;      /* 살짝 들여쓰기 */
+}
+
+.summary div {
+    display: block;
+    white-space: nowrap;
+}
+/* ✅ 공금관리 달력 CSS 보완 */
+.summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 12px;
+    line-height: 1.2;
+    word-break: keep-all;
+    white-space: normal;
+    overflow-wrap: break-word;
+    margin-top: 2px;
+}
+
+/* ✅ 모바일 대응 */
+@media (max-width: 480px) {
+    .summary {
+        font-size: 11px;
+    }
+    .day-cell {
+        min-height: 70px; /* 모바일에서도 내용이 짤리지 않도록 */
+    }
+}
+
+/* ✅ 일정현황 달력 오늘 날짜 강조 */
+.today-cell {
+    border: 2px solid #ff4444 !important;
+    border-radius: 8px;
+    box-shadow: 0 0 4px rgba(255, 0, 0, 0.3);
+    position: relative;
+}
+
+.today-cell::after {
+    content: "오늘";
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 10px;
+    color: #ff4444;
+    font-weight: bold;
+}
+/* ✅ 달력 셀 기본 구조 */
+.day-cell {
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    min-height: 90px;
+    padding: 2px;
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow: visible; /* ✅ 내용이 잘리지 않도록 */
+}
+
+/* ✅ 내용 요약 */
+.summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 12px;
+    line-height: 1.3;
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    margin-top: 3px;
+    padding-bottom: 2px;
+}
+
+/* ✅ 모바일 대응 */
+@media (max-width: 480px) {
+    .day-cell {
+        min-height: 105px !important; /* ✅ 높이 확보 */
+        padding: 4px !important;
+    }
+
+    .summary {
+        font-size: 11px !important;
+        line-height: 1.4;
+    }
+
+    .day-num {
+        font-size: 13px !important;
+    }
+}
+/* ✅ 공통 */
+.day-cell {
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    min-height: 90px;
+    padding: 2px;
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow: visible;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 12px;
+    line-height: 1.3;
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    margin-top: 3px;
+    padding-bottom: 2px;
+    transform: scale(1); /* ✅ 초기값 */
+    transform-origin: top left;
+}
+
+/* ✅ 모바일 대응 */
+@media (max-width: 480px) {
+    .day-cell {
+        min-height: 90px !important;
+        padding: 2px !important;
+    }
+
+    .summary {
+        font-size: 10px !important;      /* ✅ 폰트 작게 */
+        line-height: 1.2 !important;     /* ✅ 줄 간격 좁게 */
+        transform: scale(0.9);           /* ✅ 전체 크기를 살짝 축소 */
+        transform-origin: top left;
+    }
+
+    .day-num {
+        font-size: 12px !important;
+    }
+}
+
+/* ✅ 아주 작은 화면 (아이폰 SE, 갤럭시 mini 대응) */
+@media (max-width: 360px) {
+    .summary {
+        font-size: 9px !important;
+        line-height: 1.1 !important;
+        transform: scale(0.85); /* ✅ 살짝 더 축소 */
+    }
+}
+.summary {
+    font-size: 12px;
+    line-height: 1.3;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+/* ✅ 모바일 최적화 */
+@media (max-width: 480px) {
+    .summary {
+        font-size: 10px;
+        line-height: 1.2;
+        text-align: left;
+    }
+}
+/* ✅ 공통 스타일 */
+.summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 12px;
+    line-height: 1.3;
+    word-break: keep-all;
+    white-space: normal;
+    overflow-wrap: break-word;
+    margin-top: 2px;
+}
+
+/* ✅ 각 줄의 텍스트와 숫자가 한 줄에 정렬되도록 */
+.summary br {
+    content: "";
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* ✅ 달력 셀 */
+.day-cell {
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    min-height: 95px;
+    padding: 4px;
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow: visible;
+}
+
+/* ✅ 모바일에서 확실히 보이게 조정 */
+@media (max-width: 480px) {
+    .day-cell {
+        min-height: 105px !important;  /* ✅ 세 줄 다 들어갈 공간 확보 */
+        padding: 3px !important;
+    }
+
+    .summary {
+        font-size: 11px !important;     /* ✅ 글자 크기 줄이기 */
+        line-height: 1.25 !important;   /* ✅ 줄 간격 살짝 좁히기 */
+    }
+
+    .summary br {
+        margin-bottom: 1px !important;
+    }
+}
+/* ✅ 전체 페이지 공통 */
+.schedule-status-page {
+    max-width: 800px;
+    margin: 120px auto 0 auto; /* 헤더 높이 보정 */
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.calendar-weekdays,
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.calendar-weekdays div {
+    font-weight: bold;
+    padding: 8px 0;
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+}
+
+.calendar-grid {
+    gap: 4px;
+    margin-bottom: 40px;
+}
+
+/* ✅ 달력 셀 */
+.day-cell {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    box-sizing: border-box;
+    min-height: 90px;
+    padding: 4px;
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.day-cell:hover {
+    background: #f5f9ff;
+}
+
+.day-num {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+/* ✅ 요약정보 (출금/입금/잔액 세로 표시) */
+.summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 12px;
+    line-height: 1.3;
+    margin-top: 3px;
+    word-break: keep-all;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: left;
+}
+
+.summary br {
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* ✅ 오늘 날짜 강조 */
+.today-cell {
+    border: 2px solid #ff4444 !important;
+    border-radius: 8px;
+    box-shadow: 0 0 4px rgba(255, 0, 0, 0.3);
+    position: relative;
+    background-color: #fff5f5;
+}
+
+.today-cell::after {
+    content: "오늘";
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 10px;
+    color: #ff4444;
+    font-weight: bold;
+}
+
+/* ✅ 클릭된 날짜 강조 */
+.selected-date {
+    border: 2px solid #4a90e2;
+    background-color: #e8f1ff;
+}
+
+/* ✅ fundDetail 영역 */
+#fundDetail {
+    display: none;
+    margin-top: 20px;
+    padding-top: 5px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    width: 91%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    scroll-margin-top: 100px; /* 스크롤 여유 확보 */
+    overflow-x: auto; /* 모바일 가로 스크롤 허용 */
+}
+
+/* ✅ 공금 테이블 */
+.fund-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-top: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.fund-table th {
+    background: #5fa6e6;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px 4px;
+}
+
+.fund-table td {
+    background: #f3f8ff;
+    text-align: center;
+    border: 1px solid #d0d7e2;
+    height: 44px;
+    padding: 0;
+    vertical-align: middle;
+}
+
+/* ✅ 입력창 */
+.fund-table input[type="number"] {
+    width: 80%;
+    height: 26px;
+    text-align: right;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+
+/* ✅ 버튼 칸 균형 맞춤 */
+.fund-btn-cell .btn-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* ✅ 완료 버튼 */
+#fundSaveBtn {
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    height: 30px;
+    line-height: 1;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fundSaveBtn:hover {
+    background: #357ac8;
+}
+
+/* ✅ 모바일 대응 */
+@media (max-width: 480px) {
+    .calendar-grid, .calendar-weekdays {
+        font-size: 13px;
+    }
+
+    .day-cell {
+        min-height: 105px !important;
+        padding: 3px !important;
+    }
+
+    .day-num {
+        font-size: 13px !important;
+    }
+
+    .summary {
+        font-size: 11px !important;
+        line-height: 1.25 !important;
+    }
+
+    .fund-table td {
+        height: 38px !important;
+    }
+
+    .fund-table th,
+    .fund-table td {
+        font-size: 12px !important;
+        padding: 4px !important;
+    }
+
+    .fund-table input[type="number"] {
+        width: 95% !important;
+        font-size: 11px !important;
+        padding: 3px !important;
+    }
+
+    #fundSaveBtn {
+        font-size: 11px !important;
+        height: 26px !important;
+        padding: 0 8px !important;
+    }
+
+    #fundDetail {
+        scroll-margin-top: 110px;
+    }
+}
+
+/* ✅ 초소형 기기 대응 (아이폰 SE 등) */
+@media (max-width: 360px) {
+    .summary {
+        font-size: 10px !important;
+        line-height: 1.1 !important;
+    }
+}
+/* ✅ 버튼 영역 확실히 축소 (우선순위 강제 버전) */
+.fund-btn-cell {
+    height: 30px !important; /* ✅ 전체 행 높이 축소 */
+    padding: 0 !important;
+}
+
+.fund-btn-cell .btn-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ✅ 버튼 크기 축소 */
+#fundSaveBtn {
+    height: 22px !important;          /* ✅ 세로 높이 확 줄이기 */
+    font-size: 11px !important;       /* ✅ 글자 크기 축소 */
+    padding: 0 6px !important;        /* ✅ 여백 최소화 */
+    line-height: 1 !important;        /* ✅ 내부 줄간격 제거 */
+    min-width: 45px !important;       /* ✅ 최소 너비 확보 */
+    background: #4a90e2 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
+}
+
+#fundSaveBtn:hover {
+    background: #357ac8 !important;
+}

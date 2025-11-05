@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0de3cb9f-095f-4743-bc9a-5bf66fa4ff8d" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="REBUILD_ON_DEPENDENCY_CHANGE" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <branch-grouping />
+    <option name="FILTER_BY_ACTION_IN_POPUP" value="false" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SHOW_RECENT_BRANCHES" value="false" />
+    <option name="SHOW_TAGS" value="false" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2xg3qNhyguIVbpPGXK8HZm6SyCW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Notification.DisplayName-DoNotAsk-Database detector": "데이터베이스 탐지기",
+    "Notification.DoNotAsk-Database detector": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.Application.executor": "Run",
+    "git-widget-placeholder": "<알 수 없음>",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/Desktop/user_account/src/main/webapp/WEB-INF/jsp",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "패싯",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "vue.rearranger.settings.migration": "true",
+    "애플리케이션.Application.executor": "Run"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Desktop\user_account\src\main\webapp\WEB-INF\jsp" />
+      <recent name="C:\Users\user\Desktop\user_account\src\main\resources\static\css" />
+      <recent name="C:\Users\user\Desktop\How About This Bitch\src\main\resources\static\css" />
+      <recent name="C:\Users\user\Desktop\wedding-card\src\main\resources\static\css" />
+      <recent name="C:\Users\user\Desktop\Projects\src\main\resources\static\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Desktop\user_account\src\main\resources\static\img" />
+      <recent name="C:\Users\user\Desktop\How About This Bitch\src\main\resources\static\video" />
+      <recent name="C:\Users\user\Desktop\How About This Bitch\src\main\resources\static\some" />
+      <recent name="C:\Users\user\Desktop\How About This Bitch\src\main\resources\static\img" />
+      <recent name="C:\Users\user\Desktop\wedding-card\src\main\resources\static\img" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Projects" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0de3cb9f-095f-4743-bc9a-5bf66fa4ff8d" name="Changes" comment="" />
+      <created>1748346079052</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1748346079052</updated>
+      <workItem from="1748346080701" duration="9000" />
+      <workItem from="1748346099306" duration="1542000" />
+      <workItem from="1748515757784" duration="1956000" />
+      <workItem from="1748658835232" duration="172000" />
+      <workItem from="1748687845577" duration="6231000" />
+      <workItem from="1748768775758" duration="10614000" />
+      <workItem from="1748917907805" duration="11064000" />
+      <workItem from="1753278474151" duration="34000" />
+      <workItem from="1755336077599" duration="7202000" />
+      <workItem from="1755352947427" duration="2767000" />
+      <workItem from="1755506320210" duration="6668000" />
+      <workItem from="1755608576697" duration="29000" />
+      <workItem from="1756371165093" duration="3770000" />
+      <workItem from="1756467164471" duration="2434000" />
+      <workItem from="1756626677432" duration="8119000" />
+      <workItem from="1756681256527" duration="4482000" />
+      <workItem from="1756686470876" duration="55000" />
+      <workItem from="1757752199391" duration="993000" />
+      <workItem from="1757818448427" duration="145000" />
+      <workItem from="1757824525627" duration="12401000" />
+      <workItem from="1757930408699" duration="9753000" />
+      <workItem from="1757941224976" duration="3000" />
+      <workItem from="1758015221058" duration="2148000" />
+      <workItem from="1758364382692" duration="2042000" />
+      <workItem from="1759043987435" duration="3049000" />
+      <workItem from="1759228832850" duration="4336000" />
+      <workItem from="1759402064374" duration="6113000" />
+      <workItem from="1759486333520" duration="10000" />
+      <workItem from="1760108893416" duration="43000" />
+      <workItem from="1760162154272" duration="10000" />
+      <workItem from="1762332606733" duration="16044000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
