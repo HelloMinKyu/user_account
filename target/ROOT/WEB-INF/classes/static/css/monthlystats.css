@@ -1,0 +1,420 @@
+.stats-page {
+    max-width: calc(100% - 250px); /* 헤더 폭만큼 줄이기 */
+    margin-left: 206px;            /* ✅ 헤더 가려지는 부분만큼 밀어줌 */
+    padding: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.month-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.stats-table th, .stats-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 4px 6px;
+    white-space: nowrap;
+}
+
+.stats-table th {
+    background: #4a90e2;
+    color: white;
+}
+
+.stats-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* ✅ 일자별 세부 표기 스타일 */
+.mark {
+    display: block;
+    border-radius: 4px;
+    margin: 2px auto;
+    padding: 1px 2px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    width: 90%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* ✅ 각 역할별 색상 */
+.mark.leader { background-color: #ffcc00; color: #000; }  /* 벙주 */
+.mark.fund { background-color: #5fa6e6; }                 /* 공금 */
+.mark.nonfund { background-color: #4caf50; }              /* 비공금 */
+
+/* ✅ 표 내부 간격 조정 */
+.stats-table td {
+    vertical-align: top;
+    padding: 2px;
+}
+
+/* === 월별통계: 일자 셀 뱃지 === */
+.stats-table td .cell-badges{
+    display:flex;
+    gap:4px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    min-height:22px;
+}
+
+.mark{
+    display:inline-block;
+    padding:0 6px;
+    height:18px;
+    line-height:18px;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:600;
+    border:1px solid rgba(0,0,0,.08);
+    white-space:nowrap;
+}
+
+/* 유형별 색상 */
+.mark.leader   { background:#ffe96a; color:#333; border-color:#f0d74a; } /* 벙주 */
+.mark.fund     { background:#7bdc8e; color:#093; border-color:#56c972; } /* 공금 */
+.mark.nonfund  { background:#ffcc8f; color:#8a3a00; border-color:#f3b271; } /* 비공금 */
+
+/* 좁은 화면 폰트 살짝 축소 */
+@media (max-width: 480px){
+    .mark{ font-size:10px; padding:0 5px; height:16px; line-height:16px; }
+    .stats-table td .cell-badges{ gap:3px; }
+}
+/* === 월별통계: 일자 셀 뱃지 === */
+.stats-table td .cell-badges {
+    display: flex;
+    flex-direction: row;   /* ✅ 가로 정렬 */
+    justify-content: center;
+    align-items: center;
+    gap: 4px;              /* ✅ 뱃지 간격 */
+    flex-wrap: nowrap;     /* ✅ 한 줄 유지 */
+    min-height: 22px;
+    white-space: nowrap;   /* ✅ 줄바꿈 방지 */
+}
+
+.mark {
+    display: inline-block;
+    padding: 0 6px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid rgba(0, 0, 0, .08);
+}
+
+/* ✅ 유형별 색상 */
+.mark.leader  { background: #ffe96a; color: #333; border-color: #f0d74a; } /* 벙주 */
+.mark.fund    { background: #7bdc8e; color: #093; border-color: #56c972; } /* 공금 */
+.mark.nonfund { background: #ffcc8f; color: #8a3a00; border-color: #f3b271; } /* 비공금 */
+
+/* ✅ 모바일 */
+@media (max-width: 480px) {
+    .stats-table td .cell-badges {
+        gap: 2px;
+        flex-wrap: wrap;     /* ✅ 화면 작을 때만 줄바꿈 허용 */
+    }
+    .mark {
+        font-size: 10px;
+        padding: 0 5px;
+        height: 16px;
+        line-height: 16px;
+    }
+}
+/* ✅ 테이블 전체 감싸는 영역 */
+.stats-table-wrapper {
+    width: 100%;
+    overflow-x: auto;       /* ✅ 가로 스크롤 허용 */
+    -webkit-overflow-scrolling: touch; /* ✅ 모바일 스크롤 부드럽게 */
+    margin-bottom: 20px;
+}
+
+/* ✅ 테이블 최소폭 지정 — 내용이 많을 때도 스크롤만 생기게 */
+.stats-table {
+    min-width: 1200px;      /* ✅ 원하는 만큼 조정 가능 */
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+.stats-table th, .stats-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 4px 6px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden; /* ✅ 전체 스크롤 제거 */
+        box-sizing: border-box;
+    }
+
+    .stats-page {
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    /* ✅ 상단 달력 제목 중앙정렬 */
+    .month-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-align: center;
+    }
+
+    /* ✅ 테이블 영역 */
+    .stats-table-wrapper {
+        width: 100%;
+        overflow-x: auto;  /* ✅ 테이블만 가로 스크롤 */
+        overflow-y: hidden;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .stats-table {
+        min-width: 900px;  /* ✅ 내용이 많아도 화면보다 살짝만 넓게 */
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11px;
+        table-layout: auto;
+    }
+
+    .stats-table th,
+    .stats-table td {
+        padding: 3px 4px;
+        white-space: nowrap;
+        border: 1px solid #ddd;
+    }
+
+    .stats-table th {
+        background-color: #4a90e2;
+        color: #fff;
+        font-size: 11px;
+    }
+}
+/* ✅ 기본 구조 */
+.stats-page {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.month-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.stats-table-wrapper {
+    width: 100%;
+    overflow-x: auto; /* ✅ 가로 스크롤 활성화 */
+    -webkit-overflow-scrolling: touch;
+}
+
+.stats-table {
+    min-width: 950px; /* ✅ 모바일보다 넓게 */
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+.stats-table th,
+.stats-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 4px 6px;
+    white-space: nowrap;
+}
+
+.stats-table th {
+    background-color: #4a90e2;
+    color: #fff;
+}
+
+/* ✅ 모바일 전용 */
+@media (max-width: 768px) {
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .stats-page {
+        padding: 10px;
+    }
+
+    .stats-table-wrapper {
+        overflow-x: auto;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .stats-table {
+        min-width: 900px; /* ✅ 스크롤 가능하도록 */
+        font-size: 11px;
+    }
+
+    .stats-table th, .stats-table td {
+        padding: 3px 4px;
+    }
+}
+/* ✅ 공통 스타일 */
+.stats-page {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.month-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.stats-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.stats-table {
+    min-width: 950px;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+.stats-table th, .stats-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 4px 6px;
+    white-space: nowrap;
+}
+
+.stats-table th {
+    background-color: #4a90e2;
+    color: #fff;
+}
+
+/* ✅ 모바일 전용 */
+@media (max-width: 768px) {
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    /* ✅ 화면 전체 가로 확장 */
+    .stats-page {
+        width: 100vw;            /* 뷰포트 전체 가로로 확장 */
+        max-width: none;         /* 제한 해제 */
+        padding: 10px;
+        margin: 0;
+        box-sizing: border-box;
+        margin-top: 25px;
+    }
+
+    /* ✅ 테이블이 꽉 차게 */
+    .stats-table-wrapper {
+        width: 95vw;            /* 부모 크기와 일치 */
+        overflow-x: auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    .stats-table {
+        min-width: 950px;
+        width: 100%;
+        font-size: 11px;
+    }
+
+    .stats-table th, .stats-table td {
+        padding: 3px 4px;
+    }
+
+    /* ✅ 중앙 정렬 제거 */
+    .month-header {
+        justify-content: center;
+        text-align: center;
+    }
+}
+.stats-table-wrapper { overflow-x: auto; }
+.stats-table { border-collapse: collapse; min-width: 1800px; }
+.stats-table th, .stats-table td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 4px;
+    font-size: 13px;
+}
+
+.cell-leader { background: #fff5f5; }     /* 연한 빨강 */
+.cell-fund { background: #f5fff5; }       /* 연한 초록 */
+.cell-nonfund { background: #f5f8ff; }    /* 연한 파랑 */
+
+.top3-section {
+    margin-top: 30px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.top3-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.top3-box {
+    flex: 1;
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.top3-box h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.top3-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+.top3-box li {
+    padding: 4px 0;
+}
+.top3-box .count {
+    color: #4a90e2;
+    font-weight: bold;
+}

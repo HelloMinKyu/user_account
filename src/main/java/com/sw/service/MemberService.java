@@ -80,4 +80,8 @@ public class MemberService {
 
         return result;
     }
+
+    public void deleteMember(Long srno) {
+        memberRepository.deleteById(srno);
+    }
 }

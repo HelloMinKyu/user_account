@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: user
+Build-Jdk: Oracle OpenJDK 1.8.0_131
+Implementation-Title: exam
+Implementation-Version: 2.3.4.RELEASE
+Implementation-Vendor-Id: exam
+Main-Class: ${start-class}
+

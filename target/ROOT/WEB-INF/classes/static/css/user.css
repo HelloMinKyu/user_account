@@ -1,0 +1,353 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    background: #f9f9f9;
+}
+
+/* ✅ 사이드바와 헤더 고려 */
+.member-page {
+    margin-left: 200px;
+    padding: 80px 20px 40px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .member-page {
+        margin-left: 0;
+        padding-top: 70px;
+    }
+}
+
+/* ✅ 타이틀 */
+.page-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* ✅ 테이블 */
+.member-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.member-table th, .member-table td {
+    text-align: center;
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.member-table th {
+    background: #2b3a4a;
+    color: #fff;
+}
+
+.member-table tr:hover {
+    background: #f3f6f9;
+}
+
+/* ✅ 입력 섹션 */
+.member-form-section {
+    margin-top: 30px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.member-form-grid {
+    display: flex;
+    gap: 30px;
+}
+
+.member-inputs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.member-inputs label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.member-inputs input,
+.member-inputs select,
+.member-inputs textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.member-inputs input:focus,
+.member-inputs select:focus,
+.member-inputs textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+/* ✅ 회원 사진 */
+.member-photo {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.member-photo img {
+    width: 160px;
+    height: 160px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+/* ✅ 파일 업로드 버튼 */
+.file-label {
+    background: #2b3a4a;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.file-label:hover {
+    background: #3f5368;
+}
+
+#photoInput {
+    display: none;
+}
+
+/* ✅ 저장 버튼 */
+.save-btn-wrap {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.save-btn {
+    background: #2b3a4a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 40px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.save-btn:hover {
+    background: #3f5368;
+}
+
+/* ✅ 반응형 */
+@media (max-width: 768px) {
+    .member-form-grid {
+        flex-direction: column;
+    }
+
+    .member-photo {
+        align-items: center;
+    }
+}
+/* ✅ 테이블 감싸는 영역 */
+.member-list-section {
+    width: 100%;
+    overflow-x: auto; /* 가로 스크롤 허용 */
+}
+
+.member-table {
+    min-width: 700px; /* 표가 너무 작게 줄지 않도록 최소 너비 설정 */
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.member-table th,
+.member-table td {
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    text-align: center;
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.member-table th {
+    background: #2b3a4a;
+    color: #fff;
+}
+
+/* ✅ 모바일 반응형에서 스크롤 가능하게 */
+@media (max-width: 768px) {
+    .member-list-section {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .member-table {
+        min-width: 800px; /* 열이 가로로 유지되도록 */
+    }
+}
+
+/* ✅ 회원 사진 가운데 정렬 */
+.member-photo {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+    justify-content: start;
+    gap: 12px;
+    margin: 0 auto; /* 중앙 배치 */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.page-btn {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.page-btn.active {
+    background: #4a90e2;
+    color: #fff;
+    font-weight: 600;
+}
+
+.page-btn:disabled {
+    background: #f1f1f1;
+    color: #aaa;
+    cursor: default;
+}
+.delete-btn {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.delete-btn:hover {
+    background: #c0392b;
+}
+.member-photos {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-top: 15px;
+}
+
+.member-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.member-photo img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+}
+
+.file-label {
+    background: #3498db;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.file-label:hover {
+    background: #2980b9;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.member-photos {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-top: 15px;
+    flex-wrap: wrap; /* ✅ 자동 줄바꿈 */
+}
+
+/* ✅ 기본(PC): 3개 가로 정렬 */
+.member-photo {
+    flex: 1 1 calc(33.333% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ✅ 이미지 스타일 */
+.member-photo img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+}
+
+/* ✅ 버튼 스타일 */
+.file-label {
+    background: #3498db;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.file-label:hover {
+    background: #2980b9;
+}
+
+/* ✅ 태블릿(768px 이하) → 2개씩 */
+@media (max-width: 768px) {
+    .member-photo {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+/* ✅ 모바일(480px 이하) → 세로 1개씩 */
+@media (max-width: 480px) {
+    .member-photo {
+        flex: 1 1 100%;
+    }
+
+    .member-photo img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .file-label {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}

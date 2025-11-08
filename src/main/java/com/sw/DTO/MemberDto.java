@@ -17,6 +17,8 @@ public class MemberDto {
     private String joinDate;
     private String note;
     private String photoPath; //
+    private String photoPath2; //
+    private String photoPath3; //
 
     public static MemberDto from(Member m) {
         MemberDto dto = new MemberDto();
@@ -29,6 +31,8 @@ public class MemberDto {
         dto.setJoinDate(m.getJoinDate() != null ? m.getJoinDate().toString() : "");
         dto.setNote(m.getNote());
         dto.setPhotoPath(m.getPhotoPath());
+        dto.setPhotoPath2(m.getPhotoPath2());
+        dto.setPhotoPath3(m.getPhotoPath3());
         return dto;
     }
 }

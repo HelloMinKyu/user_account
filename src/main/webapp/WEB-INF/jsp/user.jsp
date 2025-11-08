@@ -23,6 +23,7 @@
           <th>생년월일</th>
           <th>가입일</th>
           <th>특이사항</th>
+          <th>삭제</th>
         </tr>
         </thead>
         <tbody>
@@ -92,13 +93,28 @@
         </div>
 
         <!-- 회원 사진 -->
-        <div class="member-photo">
-          <img src="/img/default_profile.png" alt="회원 사진 미리보기" id="photoPreview">
+        <div class="member-photos">
+          <div class="member-photo">
+            <img src="/img/default_profile.png" id="photoPreview1" alt="사진1 미리보기">
+            <label for="photoInput1" class="file-label">사진1 선택</label>
+            <input type="file" name="photo1" id="photoInput1" accept="image/*">
+          </div>
 
-          <!-- 파일 업로드 꾸민 버튼 -->
-          <label for="photoInput" class="file-label">사진 선택</label>
-          <input type="file" name="photo" id="photoInput" accept="image/*">
+          <div class="member-photo">
+            <img src="/img/default_profile.png" id="photoPreview2" alt="사진2 미리보기">
+            <label for="photoInput2" class="file-label">사진2 선택</label>
+            <input type="file" name="photo2" id="photoInput2" accept="image/*">
+          </div>
+
+          <div class="member-photo">
+            <img src="/img/default_profile.png" id="photoPreview3" alt="사진3 미리보기">
+            <label for="photoInput3" class="file-label">사진3 선택</label>
+            <input type="file" name="photo3" id="photoInput3" accept="image/*">
+          </div>
         </div>
+
+
+
 
       </div>
 
@@ -153,6 +169,7 @@
                 <td>\${m.birth || ''}</td>
                 <td>\${m.joinDate || ''}</td>
                 <td>\${m.note || ''}</td>
+                <td><button class="delete-btn" data-srno="\${m.srno}">삭제</button></td>
               </tr>`;
             tbody.append(tr);
           });
@@ -212,14 +229,20 @@
       $('input[name=join_date]').val(member.joinDate || '');
       $('textarea[name=note]').val(member.note || '');
 
-      if (member.photoPath) {
-        const safePath = member.photoPath.replace(/\\/g, '/');
-        const base64Path = btoa(unescape(encodeURIComponent(safePath)));
-        $('#photoPreview').attr('src', '/api/member/photo?path=' + base64Path);
-      } else {
-        $('#photoPreview').attr('src', '/img/default_profile.png');
-      }
+      // 사진들 표시
+      const paths = [member.photoPath, member.photoPath2, member.photoPath3];
+      paths.forEach((p, i) => {
+        const index = i + 1;
+        if (p) {
+          const safePath = p.replace(/\\/g, '/');
+          const base64Path = btoa(unescape(encodeURIComponent(safePath)));
+          $('#photoPreview' + index).attr('src', '/api/member/photo?path=' + base64Path);
+        } else {
+          $('#photoPreview' + index).attr('src', '/img/default_profile.png');
+        }
+      });
     });
+
 
     // 저장 (등록/수정 공통)
     $('.save-btn').click(function() {
@@ -232,7 +255,9 @@
       formData.append('birth', $('input[name=birth]').val());
       formData.append('join_date', $('input[name=join_date]').val());
       formData.append('note', $('textarea[name=note]').val());
-      formData.append('photo', $('#photoInput')[0].files[0]);
+      formData.append('photo1', $('#photoInput1')[0].files[0]);
+      formData.append('photo2', $('#photoInput2')[0].files[0]);
+      formData.append('photo3', $('#photoInput3')[0].files[0]);
 
       $.ajax({
         url: '/api/member/save',
@@ -261,21 +286,50 @@
       $('input[name=birth]').val('');
       $('input[name=join_date]').val('');
       $('textarea[name=note]').val('');
-      $('#photoPreview').attr('src', '/img/default_profile.png');
-      $('#photoInput').val('');
+
+      // 사진 3개 초기화
+      for (let i = 1; i <= 3; i++) {
+        $('#photoPreview' + i).attr('src', '/img/default_profile.png');
+        $('#photoInput' + i).val('');
+      }
     }
 
+
     // 첨부 미리보기
-    $('#photoInput').on('change', function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          $('#photoPreview').attr('src', e.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
+    ['1', '2', '3'].forEach(num => {
+      $('#photoInput' + num).on('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            $('#photoPreview' + num).attr('src', evt.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
     });
+
+
+    // 회원 삭제
+    $(document).on('click', '.delete-btn', function(e) {
+      e.stopPropagation(); // 행 클릭 이벤트 방지
+      const srno = $(this).data('srno');
+
+      if (!confirm('정말로 삭제하시겠습니까?')) return;
+
+      $.ajax({
+        url: '/api/member/delete/' + srno,
+        type: 'DELETE',
+        success: function(res) {
+          alert(res);
+          loadMembers(currentPage); // ✅ 현재 페이지 갱신
+        },
+        error: function(xhr) {
+          alert('삭제 실패: ' + xhr.responseText);
+        }
+      });
+    });
+
   });
 </script>
 

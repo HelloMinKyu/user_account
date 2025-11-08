@@ -370,3 +370,51 @@
         text-align: center;
     }
 }
+.stats-table-wrapper { overflow-x: auto; }
+.stats-table { border-collapse: collapse; min-width: 1800px; }
+.stats-table th, .stats-table td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 4px;
+    font-size: 13px;
+}
+
+.cell-leader { background: #fff5f5; }     /* 연한 빨강 */
+.cell-fund { background: #f5fff5; }       /* 연한 초록 */
+.cell-nonfund { background: #f5f8ff; }    /* 연한 파랑 */
+
+.top3-section {
+    margin-top: 30px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.top3-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.top3-box {
+    flex: 1;
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.top3-box h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.top3-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+.top3-box li {
+    padding: 4px 0;
+}
+.top3-box .count {
+    color: #4a90e2;
+    font-weight: bold;
+}

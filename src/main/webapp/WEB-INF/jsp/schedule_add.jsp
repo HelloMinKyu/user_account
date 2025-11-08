@@ -72,6 +72,9 @@
 </html>
 <script>
   $(function(){
+    if (!localStorage.getItem('editSchedule')) {
+      localStorage.removeItem('editSchedule');
+    }
     let currentType = null;   // leader / fund / nonfund
     let members = [];
 
@@ -105,29 +108,28 @@
     }
 
     // ===============================
-    // ✅ [2] 팝업 열기 / 닫기
+    // [2] 팝업 열기 / 닫기
     // ===============================
     $('.search-btn').on('click', function(){
       currentType = $(this).data('type');
+      modalSelected.clear();
 
-      // 다중선택의 경우 기존 입력값 복원
-      if(currentType === 'fund' || currentType === 'nonfund'){
-        modalSelected.clear();
-        const preset = (currentType === 'fund'
-                        ? $('textarea[name=fund_members]').val()
-                        : $('textarea[name=nonfund_members]').val()
-        ).split(',').map(s => s.trim()).filter(Boolean);
-        preset.forEach(name => modalSelected.add(name));
+      // ✅ 기존 입력값 복원 (벙주도 다중 가능하게)
+      let preset = [];
+      if(currentType === 'leader'){
+        preset = $('input[name=leader]').val().split(',').map(s => s.trim()).filter(Boolean);
+      } else if(currentType === 'fund'){
+        preset = $('textarea[name=fund_members]').val().split(',').map(s => s.trim()).filter(Boolean);
+      } else if(currentType === 'nonfund'){
+        preset = $('textarea[name=nonfund_members]').val().split(',').map(s => s.trim()).filter(Boolean);
       }
+      preset.forEach(name => modalSelected.add(name));
 
       modalPage = 0;
       loadMembersPaged(modalPage);
       $('#memberModal').fadeIn(200);
     });
 
-    $('#closeModal').on('click', function(){
-      $('#memberModal').fadeOut(200);
-    });
 
     // ===============================
     // ✅ [3] 회원 목록 페이징 로드
@@ -143,26 +145,23 @@
           const tbody = $('#modalMemberList');
           tbody.empty();
 
-          list.forEach(m=>{
+          list.forEach(m => {
             const value = m.name;
-            const checked = (currentType == 'leader')
-                    ? ''
-                    : (modalSelected.has(value) ? 'checked' : '');
+            const checked = modalSelected.has(value) ? 'checked' : '';
             tbody.append(`
-              <tr>
-                <td>
-                  <input type="\${currentType=='leader' ? 'radio' : 'checkbox'}"
-                         class="modal-select"
-                         name="selectMember"
-                         value="\${value}" \${checked}>
-                </td>
-                <td>\${m.name || ''}</td>
-                <td>\${m.gender || ''}</td>
-                <td>\${m.region || ''}</td>
-                <td>\${m.grade || ''}</td>
-              </tr>
-            `);
+    <tr>
+      <td>
+        <input type="checkbox" class="modal-select" name="selectMember"
+               value="\${value}" \${checked}>
+      </td>
+      <td>\${m.name || ''}</td>
+      <td>\${m.gender || ''}</td>
+      <td>\${m.region || ''}</td>
+      <td>\${m.grade || ''}</td>
+    </tr>
+  `);
           });
+
 
           renderModalPagination(modalTotalPages, modalPage);
         },
@@ -203,28 +202,29 @@
 
     $(document).on('change', '.modal-select', function(){
       const val = $(this).val();
-      if(currentType == 'leader') return;
       if(this.checked) modalSelected.add(val);
       else modalSelected.delete(val);
     });
 
     // ===============================
-    // ✅ [4] 선택 확인
+    // 선택 확인
     // ===============================
     $('#confirmSelect').on('click', function(){
+      const arr = Array.from(modalSelected);
+      if(arr.length === 0){ alert('선택된 회원이 없습니다.'); return; }
+
       if(currentType === 'leader'){
-        const selected = $('input[name=selectMember]:checked').val();
-        if(!selected){ alert('벙주를 선택해주세요.'); return; }
-        $('input[name=leader]').val(selected);
-      } else {
-        const arr = Array.from(modalSelected);
-        if(arr.length === 0){ alert('참석자를 선택해주세요.'); return; }
-        if(currentType === 'fund'){
-          $('textarea[name=fund_members]').val(arr.join(', '));
-        } else if(currentType === 'nonfund'){
-          $('textarea[name=nonfund_members]').val(arr.join(', '));
-        }
+        $('input[name=leader]').val(arr.join(', '));
+      } else if(currentType === 'fund'){
+        $('textarea[name=fund_members]').val(arr.join(', '));
+      } else if(currentType === 'nonfund'){
+        $('textarea[name=nonfund_members]').val(arr.join(', '));
       }
+
+      $('#memberModal').fadeOut(200);
+    });
+
+    $(document).on('click', '#closeModal', function(){
       $('#memberModal').fadeOut(200);
     });
 
@@ -281,5 +281,54 @@
         }
       });
     });
+
+    // ===============================
+// [7] 날짜 선택 시 중복 일정 확인
+// ===============================
+    $('input[name=schedule_date]').on('change', function() {
+      const selectedDate = $(this).val();
+      if (!selectedDate) return;
+
+      $.ajax({
+        url: '/api/schedule/check?date=' + selectedDate,
+        type: 'GET',
+        success: function(res) {
+          console.log("서버 응답:", res);
+          if (res && res.exists) {
+            // 이미 존재하는 일정일 경우 — 수정모드 전환
+            const s = res.schedule;
+            $('input[name=schedule_date]').val(s.scheduleDate);
+            $('input[name=leader]').val(s.leader);
+            $('textarea[name=fund_members]').val(s.fundMembers);
+            $('textarea[name=nonfund_members]').val(s.nonFundMembers);
+
+            $('.save-btn').text('수정 완료');
+            if ($('#deleteBtn').length === 0) {
+              $('.save-btn-wrap').append('<button id="deleteBtn" class="delete-btn">삭제</button>');
+            }
+
+            // 수정 ID 설정 및 localStorage 반영
+            window.editId = s.srno;
+            localStorage.setItem('editSchedule', JSON.stringify(s));
+
+            alert('이미 존재하는 일정이 불러와졌습니다. 수정 후 저장하세요.');
+          } else {
+            // 새 일정 입력 모드로 초기화
+            window.editId = null;
+            localStorage.removeItem('editSchedule');
+            $('.save-btn').text('저장');
+            $('#deleteBtn').remove();
+
+            $('input[name=leader]').val('');
+            $('textarea[name=fund_members]').val('');
+            $('textarea[name=nonfund_members]').val('');
+          }
+        },
+        error: function(xhr) {
+          console.error('일정 확인 실패', xhr.responseText);
+        }
+      });
+    });
+
   });
 </script>

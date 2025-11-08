@@ -29,5 +29,9 @@
         $('.menu-toggle').click(function() {
             $('.sidebar').toggleClass('open');
         });
+
+        $('a[href="/schedule/add"]').on('click', function() {
+            localStorage.removeItem('editSchedule');
+        });
     });
 </script>

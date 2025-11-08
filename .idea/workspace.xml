@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="sw:war" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -62,7 +67,7 @@
     "Spring Boot.Application.executor": "Run",
     "git-widget-placeholder": "<알 수 없음>",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/user/Desktop/user_account/src/main/webapp/WEB-INF/jsp",
+    "last_opened_file_path": "C:/Users/user/Desktop/Ant_Home",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -152,7 +157,8 @@
       <workItem from="1759486333520" duration="10000" />
       <workItem from="1760108893416" duration="43000" />
       <workItem from="1760162154272" duration="10000" />
-      <workItem from="1762332606733" duration="16044000" />
+      <workItem from="1762332606733" duration="23408000" />
+      <workItem from="1762566170997" duration="1195000" />
     </task>
     <servers />
   </component>

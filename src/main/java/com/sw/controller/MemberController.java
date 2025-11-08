@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.HashMap;
@@ -60,11 +61,13 @@ public class MemberController {
             @RequestParam("birth") String birth,
             @RequestParam("join_date") String joinDate,
             @RequestParam("note") String note,
-            @RequestParam(value = "photo", required = false) MultipartFile photo
+            @RequestParam(value = "photo1", required = false) MultipartFile photo1,
+            @RequestParam(value = "photo2", required = false) MultipartFile photo2,
+            @RequestParam(value = "photo3", required = false) MultipartFile photo3
     ) {
         try {
             Member member = (srno != null)
-                    ? memberService.findById(srno) // 기존 회원 조회
+                    ? memberService.findById(srno)
                     : new Member();
 
             member.setName(name);
@@ -78,21 +81,41 @@ public class MemberController {
             member = memberService.saveMember(member);
             Long newSrno = member.getSrno();
 
-            // 사진 업로드 처리
-            if (photo != null && !photo.isEmpty()) {
-                String fileName = photo.getOriginalFilename();
-                memberService.savePhoto(newSrno, fileName, photo.getBytes());
+            String baseDir = "C:\\user_account\\" + newSrno + "\\";
+            Files.createDirectories(Paths.get(baseDir));
 
-                String savePath = "C:\\user_account\\" + newSrno + "\\" + fileName;
-                memberService.updatePhotoPath(newSrno, savePath);
+            // 사진 1
+            if (photo1 != null && !photo1.isEmpty()) {
+                String fileName1 = photo1.getOriginalFilename();
+                String savePath1 = baseDir + fileName1;
+                photo1.transferTo(new File(savePath1));
+                member.setPhotoPath(savePath1);
             }
 
+            // 사진 2
+            if (photo2 != null && !photo2.isEmpty()) {
+                String fileName2 = photo2.getOriginalFilename();
+                String savePath2 = baseDir + fileName2;
+                photo2.transferTo(new File(savePath2));
+                member.setPhotoPath2(savePath2);
+            }
+
+            // 사진 3
+            if (photo3 != null && !photo3.isEmpty()) {
+                String fileName3 = photo3.getOriginalFilename();
+                String savePath3 = baseDir + fileName3;
+                photo3.transferTo(new File(savePath3));
+                member.setPhotoPath3(savePath3);
+            }
+
+            memberService.saveMember(member);
             return ResponseEntity.ok("회원정보가 저장되었습니다.");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("회원 저장 중 오류: " + e.getMessage());
         }
     }
+
 
     @GetMapping("/photo")
     public ResponseEntity<Resource> getPhoto(@RequestParam("path") String encodedPath) throws IOException {
@@ -105,5 +128,11 @@ public class MemberController {
         String contentType = Files.probeContentType(file.toPath());
         if (contentType == null) contentType = "image/jpeg";
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType)).body(resource);
+    }
+
+    @DeleteMapping("/delete/{srno}")
+    public ResponseEntity<String> deleteMember(@PathVariable Long srno) {
+        memberService.deleteMember(srno);
+        return ResponseEntity.ok("회원이 삭제되었습니다.");
     }
 }

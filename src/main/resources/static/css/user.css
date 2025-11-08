@@ -238,3 +238,116 @@ body {
     color: #aaa;
     cursor: default;
 }
+.delete-btn {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.delete-btn:hover {
+    background: #c0392b;
+}
+.member-photos {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-top: 15px;
+}
+
+.member-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.member-photo img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+}
+
+.file-label {
+    background: #3498db;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.file-label:hover {
+    background: #2980b9;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.member-photos {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-top: 15px;
+    flex-wrap: wrap; /* ✅ 자동 줄바꿈 */
+}
+
+/* ✅ 기본(PC): 3개 가로 정렬 */
+.member-photo {
+    flex: 1 1 calc(33.333% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ✅ 이미지 스타일 */
+.member-photo img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+}
+
+/* ✅ 버튼 스타일 */
+.file-label {
+    background: #3498db;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.file-label:hover {
+    background: #2980b9;
+}
+
+/* ✅ 태블릿(768px 이하) → 2개씩 */
+@media (max-width: 768px) {
+    .member-photo {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+/* ✅ 모바일(480px 이하) → 세로 1개씩 */
+@media (max-width: 480px) {
+    .member-photo {
+        flex: 1 1 100%;
+    }
+
+    .member-photo img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .file-label {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}

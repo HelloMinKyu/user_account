@@ -26,6 +26,12 @@ public class Member {
     @Column(length = 255)
     private String photoPath;
 
+    @Column(length = 255)
+    private String photoPath2;
+
+    @Column(length = 255)
+    private String photoPath3;
+
     @Column(nullable = false, updatable = false, insertable = false,
             columnDefinition = "timestamp default current_timestamp")
     private java.sql.Timestamp regDate;
